@@ -15,9 +15,38 @@
                 <flux:navlist.group :heading="__('Platform')" class="grid">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                 </flux:navlist.group>
+                <flux:navlist.group :heading="__('Companies')" class="grid">
+                    <flux:navlist.item icon="building-office" :href="route('companies.index')" :current="request()->routeIs('companies.index')" wire:navigate>{{ __('List of Companies') }}</flux:navlist.item>
+                    <flux:navlist.item icon="plus" :href="route('companies.create')" :current="request()->routeIs('companies.create')" wire:navigate>{{ __('Create a New Company') }}</flux:navlist.item>
+                </flux:navlist.group>
+                <flux:navlist.group :heading="__('Departments')" class="grid">
+                </flux:navlist.group>
+                <flux:navlist.group :heading="__('Designations')" class="grid">
+                </flux:navlist.group>
+                <flux:navlist.group :heading="__('Employees')" class="grid">
+                </flux:navlist.group>
+                <flux:navlist.group :heading="__('Contracts')" class="grid">
+                </flux:navlist.group>
+                <flux:navlist.group :heading="__('Payroll')" class="grid">
+                </flux:navlist.group>
+
             </flux:navlist>
 
             <flux:spacer />
+
+            <flux:dropdown>
+                <flux:profile 
+                :name="App\Models\Company::find(session('company_id'))->name??'Select Company'"
+                :initials="App\Models\Company::find(session('company_id'))->initials??'N/A'"
+                icon-trailing="chevrons-up-down"/>
+                <flux:menu>
+                    @foreach(auth()->user()->companies as $company)
+                    <flux:menu.radio.group>
+                        @livewire('company-switch', ['company' => $company], key($company->id))
+                    </flux:menu.radio.group>
+                    @endforeach
+                </flux:menu>
+            </flux:dropdown>
 
             <flux:navlist variant="outline">
                 <flux:navlist.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
