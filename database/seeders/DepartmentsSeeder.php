@@ -33,7 +33,7 @@ class DepartmentsSeeder extends Seeder
                     'name' => 'Sales',
                 ],
             ]);
-        }
+        
 
         foreach($departments as $department) {
             switch ($department->name) {
@@ -85,6 +85,8 @@ class DepartmentsSeeder extends Seeder
             }
 
         }
+
+    }
 
     }
 }
