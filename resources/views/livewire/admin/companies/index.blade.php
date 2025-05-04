@@ -27,15 +27,15 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            @foreach($companies as $company)
+                            @foreach($companies as $key => $company)
                                 <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $company->id }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $key+1 }}</td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex items-center">
                                         <img src="{{ $company->logo_url }}" alt="" class="w-10 h-10 rounded-full mr-4">
                                         <span>{{ $company->name }}</span>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $company->departments->flatMap->designations->flatMap->employees->count() }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <flux:button variant="filled" icon="pencil" :href="route('companies.edit', $company->id)"/>
                                         <flux:button variant="danger" icon="trash" wire:click="delete({{ $company->id }})"/>
                                     </td>

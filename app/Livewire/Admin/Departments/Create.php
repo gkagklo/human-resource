@@ -13,7 +13,7 @@ class Create extends Component
     {
         return [
             'department.name' => 'required|string|max:255',
-            'department.company_id' => 'required|exists:companies,id',
+            // 'department.company_id' => 'required|exists:companies,id',
         ];
     }
 
@@ -23,15 +23,12 @@ class Create extends Component
     }
 
     public function save()
-    {
+    {  
         $this->validate();
-
         $this->department->company_id = session('company_id');
         $this->department->save();
-
         session()->flash('success', 'Department created successfully.');
-
-        return $this->redirectIntended('departments.index');
+        return $this->redirectIntended(route('departments.index'),true);
     }
 
     public function render()

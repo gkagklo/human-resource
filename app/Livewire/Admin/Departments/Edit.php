@@ -30,7 +30,7 @@ class Edit extends Component
 
         session()->flash('success', 'Department updated successfully.');
 
-        return $this->redirectIntended('departments.index');
+        return $this->redirectIntended(route('departments.index'),true);
     }
     public function render()
     {

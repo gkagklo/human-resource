@@ -16,6 +16,7 @@ class Index extends Component
     {
         Department::find($id)->delete();
         session()->flash('success', 'Department deleted successfully.');
+        return $this->redirectIntended(route('departments.index'),true);
     }
 
     public function render()

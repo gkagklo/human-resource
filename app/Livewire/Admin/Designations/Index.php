@@ -16,6 +16,7 @@ class Index extends Component
     {
         Designation::find($id)->delete();
         session()->flash('success', 'Designation deleted successfully.');
+        return $this->redirectIntended(route('designations.index'),true);
     }
     public function render()
     {
