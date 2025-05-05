@@ -13,7 +13,6 @@ class Create extends Component
     {
         return [
             'department.name' => 'required|string|max:255',
-            // 'department.company_id' => 'required|exists:companies,id',
         ];
     }
 

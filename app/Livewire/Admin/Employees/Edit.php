@@ -19,8 +19,9 @@ class Edit extends Component
             'employee.name' => 'required|string|max:255',
             'employee.email' => 'required|email|max:255',
             'employee.phone' => 'required|string|max:15',
-            'employee.address' => 'required|string|max:15',
+            'employee.address' => 'required|string|max:255',
             'employee.designation_id' => 'required|exists:designations,id',
+            'department_id' => 'required|exists:departments,id',
         ];
     }
 
@@ -35,7 +36,7 @@ class Edit extends Component
         $this->validate();
         $this->employee->save();
         session()->flash('success', 'Employee updated successfully.');
-        return $this->redirectIntended('employees.index');
+        return $this->redirectIntended(route('employees.index'),true);
     }
 
     public function render()
