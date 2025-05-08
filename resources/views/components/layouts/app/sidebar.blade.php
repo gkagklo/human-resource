@@ -36,6 +36,8 @@
                     <flux:navlist.item icon="plus" :href="route('contracts.create')" :current="request()->routeIs('contracts.create')" wire:navigate>{{ __('Create a New Contract') }}</flux:navlist.item>
                 </flux:navlist.group>
                 <flux:navlist.group :heading="__('Payroll')" class="grid">
+                    <flux:navlist.item icon="building-office" :href="route('payrolls.index')" :current="request()->routeIs('payrolls.index')" wire:navigate>{{ __('List of Payrolls') }}</flux:navlist.item>
+                    {{-- <flux:navlist.item icon="plus" :href="route('payrolls.show', $)" :current="request()->routeIs('payrolls.show')" wire:navigate>{{ __('Show Payroll') }}</flux:navlist.item> --}}
                 </flux:navlist.group>
 
             </flux:navlist>
