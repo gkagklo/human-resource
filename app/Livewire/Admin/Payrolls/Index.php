@@ -68,6 +68,12 @@ class Index extends Component
         session()->flash('success', 'Payroll updated successfully for ' . $this->monthYear);
     }
 
+    public function viewPayroll($id)
+    {
+        $payroll = Payroll::inCompany()->find($id);
+        $this->redirectIntended(route('payrolls.show', $payroll), true);
+    }
+
     public function render()
     {
         return view('livewire.admin.payrolls.index', [
