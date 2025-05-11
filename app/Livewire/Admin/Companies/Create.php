@@ -3,6 +3,7 @@
 namespace App\Livewire\Admin\Companies;
 
 use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -37,6 +38,7 @@ class Create extends Component
         }
 
         $this->company->save();
+        $this->company->users()->attach(Auth::user()->id);
 
         session()->flash('success', 'Company created successfully.');
         return $this->redirectIntended(route('companies.index'), true);
